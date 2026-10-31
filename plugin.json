@@ -1,0 +1,19 @@
+{
+  "id": "neobase.fusionstellaire",
+  "name": "Fusion stellaire",
+  "version": "1.0.0",
+  "author": "NDesumeur",
+  "description": "Fais glisser les tuiles : deux astres identiques fusionnent en un plus grand.",
+  "icon": "icon.png",
+  "entry": "index.js",
+  "view": "fusion-stellaire",
+  "neobase": ">=4.0.0",
+  "type": "app",
+  "category": "Jeux",
+  "mobile": false,
+  "system": false,
+  "dependencies": {},
+  "permissions": [
+    "full"
+  ]
+}
