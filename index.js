@@ -2,11 +2,19 @@
 // Ses données sont dans le dossier du plugin, que NeoBase sauvegarde (synchro cloud et sauvegardes) ; à la première ouverture elle reprend ce que tu avais dans NeoBase.
 // Elle demande l'accès complet pour utiliser les outils d'interface de NeoBase. NeoBase ne l'ouvre que si elle est signée.
 const HTML = "<div class=\"appWrap\">\n      <div class=\"agHead\"><span class=\"label\">Fusion stellaire</span><span class=\"hint\" id=\"fuInfo\"></span><div class=\"agNav\"><select class=\"f gSel\" id=\"fuMode\" title=\"Mode de jeu\"></select><button class=\"btn px\" id=\"fuUndoBtn\" title=\"Annule le dernier coup (U)\">ANNULER</button><button class=\"btn px\" id=\"fuHoleBtn\" title=\"Échange deux tuiles (T)\">TROU DE VER</button><button class=\"btn main px\" id=\"fuNew\">NOUVELLE PARTIE</button></div></div>\n      <div class=\"gameBox tall fuBox\"><canvas id=\"fuCanvas\" width=\"240\" height=\"330\"></canvas></div>\n      <div class=\"hint\">Flèches, ZQSD ou glisser à la souris : toutes les tuiles glissent de ce côté. Deux astres pareils qui se rencontrent fusionnent en l'astre suivant : poussière, caillou, astéroïde, comète, lune, planète, planète à anneaux, géante gazeuse, étoile, supernova, trou noir. Les débris ne bougent pas et ne fusionnent pas : ils cassent quand une fusion se fait à côté. U : annuler le dernier coup · T : trou de ver (clique deux tuiles pour les échanger) · une charge de chaque tous les 150 coups et à chaque trou noir. La partie en cours est sauvegardée et synchronisée : tu la retrouves sur ton autre PC.</div>\n    </div>";
+/*CSS-MOVED*/ const CSS = `.gameBox{display:grid;place-items:center;padding:10px;background:#05010b;box-shadow:0 0 0 3px var(--line2)}
+.gameBox.fuBox canvas{aspect-ratio:240/330}
+.gameBox canvas{width:min(100%,1152px);aspect-ratio:384/144;image-rendering:pixelated;cursor:var(--cp,pointer)}
+.gameBox.tall canvas{width:auto;height:min(720px,72vh);aspect-ratio:240/320}
+.gSel{width:auto;font-size:14px;padding:6px 10px;margin-right:8px}
+.tqTile.hole{transition:opacity .4s}
+`;  // le style de ce plugin (il utilise les variables du thème de NeoBase)
 export default async function (ctx) {
   const view = ctx.view;
   if (!ctx.host) { view.textContent = "Ce plugin doit être approuvé par NeoBase pour s'ouvrir."; return; }
   const host = ctx.host, { el, toast, sfx, ask, newTab, pixIcon, PIX, WX } = host;
   const folder = ctx.folder, legacy = ctx.legacy || {};
+  ctx.host.addStyle(CSS);
   view.innerHTML = HTML;
   const $ = id => id === "fusionApp" ? view : (view.querySelector('#' + id) || document.getElementById(id));  // les identifiants de ta vue d'abord, puis ceux de la page (fenêtres, menus)
   const doc = async n => { try { return await folder.read(n); } catch { return null; } };
