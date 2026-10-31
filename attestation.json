@@ -1,0 +1,9 @@
+{
+  "pluginId": "neobase.fusionstellaire",
+  "repo": "NDesumeur/neobase-plugin-fusion-stellaire",
+  "version": "1.0.1",
+  "sha256": "52606be64bb4813364a6cd3567126baae61db84155872df9267f3d3e4af397ce",
+  "approvedAt": "2026-10-31T17:51:20.959Z",
+  "neobase": ">=4.0.0",
+  "signature": "eKC+Wh4+ifZ9WtDOE9f+X8kFrmftykEcskb/z0VheOArR9l1AT+EQ/OLpX2x2Oj5VSzi3Gm6L2PAlR/QvXoUAg=="
+}
